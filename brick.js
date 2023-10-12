@@ -100,3 +100,16 @@ class Vector {
 Vector.mult = (v, n) => new Vector(v.x * n, v.y * n);
 
 Vector.div = (v, n) => new Vector(v.x / n, v.y / n);
+
+
+  //Canvas Library
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+const width = 710;
+const height = 607;
+const uiOffsetY = 40;
+
+canvas.width = width;
+canvas.height = height;
+
