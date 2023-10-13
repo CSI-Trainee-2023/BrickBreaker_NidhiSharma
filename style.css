@@ -4,15 +4,7 @@ body {
     padding: 0;
   }
 
-  canvas {
-    border: 2px solid black;
-    margin: 0 auto;
-    display: block;
-  }
-
-  button {
-    border-radius: 5px;
-    font-size: 1.5em;
-    display: block;
-    margin: 10 auto;
-  }
+  #mycanvas{
+    background-color: #31f0f0;
+    margin: 125px 0px 125px 295px;
+}
