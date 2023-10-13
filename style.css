@@ -1,10 +1,11 @@
-body {
-    background: #faf8ef;
-    margin: 0;
-    padding: 0;
-  }
+img{
+  width: 1000px;
+  height: 50px;
+  margin-left: 100px;
+}
 
   #mycanvas{
-    background-color: #31f0f0;
-    margin: 125px 0px 125px 295px;
+    background-color: aqua;
+    padding: 45px;
+    margin: 95px 50px 50px 210px;
 }
