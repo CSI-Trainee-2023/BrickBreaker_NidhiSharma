@@ -24,4 +24,20 @@ let brickOffsetLeft = 32;
 //Create variables to take score
 let score = 0;
 
+//Creating arrays for the bricks
+let bricks = [];
+let count = [];
+for (c =0; c<brickColumnCount; c++){
+    bricks[c] = [];
+    count[c] = [];
+    for(r=0; r<brickRowCount; r++){
+        //set the x and y position of the bricks
+        bricks[c][r] = { x: 0, y: 0, status: 1};
+        count[c][r] = 4-r;
+    }
+}
 
+
+document.addEventListener('keydown', keyDownHandler, false);
+document.addEventListener('keyup', keyUpHandler, false);
+document.addEventListener("mousemove", mouseMoveHandler, false);
