@@ -9,3 +9,30 @@ img{
     padding: 45px;
     margin: 95px 50px 50px 210px;
 }
+
+#gameOverScreen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  padding: 50px;
+  color: white;
+}
+
+#gameOverScreen h1 {
+  font-size: 36px;
+}
+
+#finalScore {
+  font-size: 24px;
+}
+
+#restartButton {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px 30px;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+}

@@ -37,6 +37,7 @@ for (c =0; c<brickColumnCount; c++){
     }
 }
 
+let gameOver = false;
 
 document.addEventListener('keydown', keyDownHandler, false);
 document.addEventListener('keyup', keyUpHandler, false);
@@ -64,6 +65,11 @@ function keyUpHandler(e){
     }
     else if (e.keyCode === 37){
         leftPressed = false;
+    }
+    else if (e.keyCode === 116) { // 116 is the key code for F5
+        if(gameOver){
+            document.location.reload();
+        }
     }
 }
 
@@ -131,36 +137,42 @@ function collisionDetection(){
             if(b.status === 1){
                 if(x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight){
                     dy = -dy;
-                    count[c][r] = count[c][r]-1
-                    // brickcolor(count[c][r]);
+                    count[c][r] = count[c][r]-1;
                     b.fillStyle='red';
-                   
-                    console.log("c and r",c," ",r);
+
                     if(count[c][r]===0){
                         b.status = 0;
                         score++;
                     }
 
                     if(score >= 14){
-                        //setInterval(draw, 9)
-                        dy = -4
+                        dy = -4;
                     }
-                       
+
                     if (score >= 10){
-                        dx = 3
+                        dx = 3;
                         paddleWidth = 72;
-                        drawPaddle()
+                        drawPaddle();
                     }
 
                     if (score === brickRowCount*brickColumnCount){
-                        alert('Congratulations!! You\'ve won!');
-                        document.location.reload();
+                        gameOver = true;
                     }
                 }
             }
         }
     }
 }
+
+function drawGameOverScreen() {
+    ctx.font = '48px Arial';
+    ctx.fillStyle = 'red';
+    ctx.fillText('Game Over', canvas.width/2 - 100, canvas.height/2);
+    ctx.font = '24px Arial';
+    ctx.fillStyle = 'black';
+    ctx.fillText('Press F5 to restart', canvas.width/2 - 80, canvas.height/2 + 50);
+}
+
 function draw(){
     //clear each instance of the canvas so a new circle can be drawn
     ctx.clearRect(0,0,canvas.width, canvas.height);
@@ -169,6 +181,11 @@ function draw(){
     drawBall();
     drawPaddle();
     collisionDetection();
+
+    if(gameOver){
+        drawGameOverScreen();
+        return;
+    }
     //Calculate collision detections
     //left and right walls
     if(x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
@@ -178,18 +195,18 @@ function draw(){
     //top walls
     if(y + dy < ballRadius){
         dy = -dy;
-        console.log("Top wall")
+     console.log("Top wall")
     }
     else if (y + dy > canvas.height-ballRadius){
         //detect paddle hits
         if(x > paddleX && x < paddleX + paddleWidth){
             dy=-dy;
             console.log("Paddle hit")
+            
         }
         //if no paddle hit, body of canvas is hit ==> game over
         else {
-            alert('GAME OVER!!');
-             document.location.reload();
+           gameOver = true;
          }
     }
     //bottom wall
