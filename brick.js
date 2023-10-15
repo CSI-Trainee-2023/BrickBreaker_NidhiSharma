@@ -23,7 +23,12 @@ let brickOffsetTop = 32;
 let brickOffsetLeft = 32;
 //Create variables to take score
 let score = 0;
+let audio = document.getElementById('myAudio');
 
+// function to play the audio
+function playAudio(){
+    audio.play();
+}
 //Creating arrays for the bricks
 let bricks = [];
 let count = [];
@@ -143,6 +148,7 @@ function collisionDetection(){
                     if(count[c][r]===0){
                         b.status = 0;
                         score++;
+                        playAudio();
                     }
 
                     if(score >= 14){
@@ -171,6 +177,7 @@ function drawGameOverScreen() {
     ctx.font = '24px Arial';
     ctx.fillStyle = 'black';
     ctx.fillText('Press F5 to restart', canvas.width/2 - 80, canvas.height/2 + 50);
+    playAudio();
 }
 
 function draw(){
