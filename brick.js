@@ -23,6 +23,7 @@ let brickOffsetTop = 32;
 let brickOffsetLeft = 32;
 //Create variables to take score
 let score = 0;
+let  maxScore = 0;
 let audio = document.getElementById('myAudio');
 
 // function to play the audio
@@ -131,7 +132,8 @@ function brickcolor(x){
 function drawScore(){
     ctx.font = '18px Arial';
     ctx.fillStyle = 'brown';
-    ctx.fillText('score: '+ score, 8, 20); 
+    ctx.fillText('score: '+ score, 8, 20);
+    ctx.fillText('maxScore: '+score,100,20); 
 }
 
 //Collision dections for the bricks
