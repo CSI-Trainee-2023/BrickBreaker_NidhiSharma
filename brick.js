@@ -122,3 +122,97 @@ function drawScore(){
     ctx.fillStyle = 'brown';
     ctx.fillText('score: '+ score, 8, 20); 
 }
+
+//Collision dections for the bricks
+function collisionDetection(){
+    for(c=0; c<brickColumnCount;c++){
+        for(r=0; r<brickRowCount; r++){
+            let b = bricks[c][r];
+            if(b.status === 1){
+                if(x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight){
+                    dy = -dy;
+                    count[c][r] = count[c][r]-1
+                    // brickcolor(count[c][r]);
+                    b.fillStyle='red';
+                   
+                    console.log("c and r",c," ",r);
+                    if(count[c][r]===0){
+                        b.status = 0;
+                        score++;
+                    }
+
+                    if(score >= 14){
+                        //setInterval(draw, 9)
+                        dy = -4
+                    }
+                       
+                    if (score >= 10){
+                        dx = 3
+                        paddleWidth = 72;
+                        drawPaddle()
+                    }
+
+                    if (score === brickRowCount*brickColumnCount){
+                        alert('Congratulations!! You\'ve won!');
+                        document.location.reload();
+                    }
+                }
+            }
+        }
+    }
+}
+function draw(){
+    //clear each instance of the canvas so a new circle can be drawn
+    ctx.clearRect(0,0,canvas.width, canvas.height);
+    drawScore();
+    drawBricks();
+    drawBall();
+    drawPaddle();
+    collisionDetection();
+    //Calculate collision detections
+    //left and right walls
+    if(x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+        dx = -dx;
+        console.log("Side wall")
+    }
+    //top walls
+    if(y + dy < ballRadius){
+        dy = -dy;
+        console.log("Top wall")
+    }
+    else if (y + dy > canvas.height-ballRadius){
+        //detect paddle hits
+        if(x > paddleX && x < paddleX + paddleWidth){
+            dy=-dy;
+            console.log("Paddle hit")
+        }
+        //if no paddle hit, body of canvas is hit ==> game over
+        else {
+            alert('GAME OVER!!');
+             document.location.reload();
+         }
+    }
+    //bottom wall
+    if (y + dy > canvas.height - ballRadius || y + dy < ballRadius){
+        dy = -dy;
+    }
+    //Make paddle move
+    if(rightPressed && paddleX <canvas.width-paddleWidth){
+        paddleX += 7;
+    }
+    else if(leftPressed && paddleX > 0){
+        paddleX -= 7;
+    }
+    //Making the ball move
+    x +=dx; //update x movement every frame
+    y +=dy; //update y movement every frame
+}
+
+//Create an infinite loop that creates the ball
+//paints the ball on the canvas every 10 milliseconds.
+setInterval(draw, 10) 
+
+
+
+
+
