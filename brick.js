@@ -134,6 +134,10 @@ function drawScore(){
     ctx.fillStyle = 'brown';
     ctx.fillText('score: '+ score, 8, 20);
     ctx.fillText('maxScore: '+score,100,20); 
+    if (score > maxScore) {
+        maxScore = score;
+        localStorage.setItem('maxScore', maxScore);
+    }
 }
 
 //Collision dections for the bricks
