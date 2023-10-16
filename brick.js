@@ -21,6 +21,7 @@ let brickHeight = 24;
 let brickPadding = 12;
 let brickOffsetTop = 32;
 let brickOffsetLeft = 32;
+let gameActive = false;
 //Create variables to take score
 let score = 0;
 let  maxScore = 0;
@@ -195,6 +196,8 @@ function draw(){
     drawPaddle();
     collisionDetection();
 
+    if (!gameActive) return; // If game is not active, do nothing
+
     if(gameOver){
         drawGameOverScreen();
         return;
@@ -237,6 +240,15 @@ function draw(){
     x +=dx; //update x movement every frame
     y +=dy; //update y movement every frame
 }
+
+document.addEventListener('keydown', (e) => {
+    if (e.keyCode === 32) { // 32 is the key code for spacebar
+        if (!gameActive) {
+            gameActive = true; // Start the game
+        }
+    }
+});
+
 
 //Create an infinite loop that creates the ball
 //paints the ball on the canvas every 10 milliseconds.
