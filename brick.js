@@ -28,6 +28,10 @@ let score = 0;
 let  maxScore = 0;
 let audio = document.getElementById('myAudio');
 
+// Create a text element to display current level
+const levelDisplay = document.createElement('div');
+levelDisplay.textContent = 'Level' + level;
+document.body.appendChild(levelDisplay);
 
 // function to play the audio
 function playAudio(){
