@@ -22,10 +22,16 @@ let brickPadding = 12;
 let brickOffsetTop = 32;
 let brickOffsetLeft = 32;
 let gameActive = false;
+let level = 1;
 //Create variables to take score
 let score = 0;
 let  maxScore = 0;
 let audio = document.getElementById('myAudio');
+
+// Create a text element to display current level
+const levelDisplay = document.createElement('div');
+levelDisplay.textContent = 'Level' + level;
+document.body.appendChild(levelDisplay);
 
 // function to play the audio
 function playAudio(){
@@ -195,6 +201,16 @@ function draw(){
     drawBall();
     drawPaddle();
     collisionDetection();
+
+    if(score>=14) {
+        level++; //increase the level
+        //reset the score
+        score = 0;
+
+    }
+
+    // update the level display
+    levelDisplay.textContent = 'Level:' +  level;
 
     if (!gameActive) return; // If game is not active, do nothing
 
