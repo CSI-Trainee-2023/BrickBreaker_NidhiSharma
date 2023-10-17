@@ -191,6 +191,7 @@ function drawGameOverScreen() {
     ctx.font = '24px Arial';
     ctx.fillStyle = 'black';
     ctx.fillText('Press F5 to restart', canvas.width/2 - 80, canvas.height/2 + 50);
+    ctx.fillText('Total score: ' + score, canvas.width/2 - 80, canvas.height/2 + 80);
     playAudio();
 }
 
